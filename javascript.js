@@ -21,26 +21,28 @@
 // }
 
 
-function getHumanChoice() {
+// function getHumanChoice() {
 
-    // store and convert input to lowercase letter to ensure consistency.
-    let humanChoice = prompt("Please enter 'r' for Rock, 'p' for Paper, or 's' for Scissors.").toLowerCase();
+//     // store and convert input to lowercase letter to ensure consistency.
+//     let humanChoice = prompt("Please enter 'r' for Rock, 'p' for Paper, or 's' for Scissors.").toLowerCase();
 
-    console.log(humanChoice);
+//     console.log(humanChoice);
     
-    if (humanChoice === "r") {
-        return "rock";
+//     if (humanChoice === "r") {
+//         return "rock";
 
-    } else if (humanChoice === "p") {
-        return "paper";
+//     } else if (humanChoice === "p") {
+//         return "paper";
 
-    } else if (humanChoice === "s") {
-        return "scissors";
+//     } else if (humanChoice === "s") {
+//         return "scissors";
 
-    } else {
-        return "Please make a valid entry.";
-    }
-}
+//     } else {
+//         return "Please make a valid entry.";
+//     }
+// }
 
 
-console.log(getHumanChoice())
+// keep tally of the scores
+let computerScore = 0;
+let humanScore =    0; 
