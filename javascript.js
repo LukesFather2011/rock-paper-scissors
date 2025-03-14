@@ -109,5 +109,31 @@ function playRound(getHumanChoice, getComputerChoice) {
 }
 
 
-// function call to play the round.
-playRound(getHumanChoice(), getComputerChoice());
+// Plays the game
+function playGame() {
+
+    // Keeps the game from beginning immediately
+    let welcome = prompt("Welome to Rock, Paper, Scissors! Press <Enter> to play.");
+
+    //used to keep the below while loop going
+    let gameOn = true;
+
+    while(gameOn) {
+
+        playRound(getHumanChoice(), getComputerChoice());
+        
+        
+        let playAgain = prompt("Do you want to play another round? ('y' or 'n')").toLowerCase();
+
+        if (playAgain === 'n') {
+            gameOn = false;
+        } 
+    }
+}
+
+
+// Plays the actual game
+playGame();
+
+// farewell message
+console.log("Thank you for playing!")
