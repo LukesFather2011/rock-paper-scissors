@@ -57,14 +57,57 @@ function playRound(getHumanChoice, getComputerChoice) {
     console.log(`You picked ${humanSelection}.`);
     console.log(`Computer picked ${computerSelection}`);
 
-    // the logic for the round
+    // If a tie
     if (humanSelection === computerSelection) {
         console.log(`You both picked ${humanSelection}. It's a tie.`);
 
-    } else { 
-        console.log(0);
+    // If not a tieplayRound(getHumanChoice(), getComputerChoice());
+
+    } else if (humanSelection != computerSelection) { 
+
+        // Player picks rock
+        if (humanSelection === 'rock') {
+            
+            if (computerSelection === "scissors") {     // Player wins
+                ++humanScore;
+                console.log("You win! Rock beats scissors.");
+
+            } else {                                    // Computer wins
+                ++computerScore;
+                console.log("You lose. Paper beats rock.");
+            }
+
+        // Player picks paper
+        } else if (humanSelection === 'paper') {
+
+            if (computerSelection === 'rock') {         // Player wins
+                ++humanScore;
+                console.log("You win! Paper beats rock.");
+
+            } else {                                    // Computer Wins
+                ++computerScore;
+                console.log("You lose. Scissors beat paper.");               
+            }
+
+        // Player picks scissors
+        } else if (humanSelection === 'scissors') {
+
+            if (computerSelection === 'paper') {         // Player wins
+                ++humanScore;
+                console.log("You win! Scissors beat paper.");
+
+            } else {                                    // Computer Wins
+                ++computerScore;
+                console.log("You lose. Rock beats scissors.");               
+            }
+        }
+
+    // Present the socre to to the player at the end of the round. 
+    console.log(`Score: You - ${humanScore} | Computer - ${computerScore}`);
+
     }
 }
+
 
 // function call to play the round.
 playRound(getHumanChoice(), getComputerChoice());
