@@ -5,9 +5,6 @@ function getComputerChoice() {
     // assigns a random number to computerChoice from 0 to 1
     let computerChoice = Math.random();
 
-    // used for debugging
-    console.log(computerChoice)
-
     // Try to divide into thirds to make it fair.
     if (computerChoice > 0 && computerChoice <= 0.33) {
         return "rock";
@@ -50,7 +47,7 @@ let humanScore =    0;
 function playRound(getHumanChoice, getComputerChoice) {
 
     // hold the choices to use for later
-    const humanSelection    = getHumanChoice;
+    const humanSelection     = getHumanChoice;
     const computerSelection  = getComputerChoice;
 
     // allows the user to see what was chosen as well as allow for debugging
