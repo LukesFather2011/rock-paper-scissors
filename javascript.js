@@ -1,5 +1,10 @@
 /* This program runs the game Rock, Paper, Scissors in the console */
 
+// used for placement of player & computer choices
+const container     = document.querySelector("#container");
+const scores        = document.querySelector("#scoreContainer");
+
+
 function getComputerChoice() { 
 
     // assigns a random number to computerChoice from 0 to 1
@@ -21,101 +26,86 @@ function getComputerChoice() {
 // Rework this function to work with buttons
 function getHumanChoice() {
 
-    // used for placement of player & computer choices
-    const container     = document.querySelector("#container");
-    const scores        = document.querySelector("#scoreContainer");
-
     const rockButton    = document.querySelector("#rockButton");
     const paperButton   = document.querySelector("#paperButton");
     const scissorButton = document.querySelector("#scissorButton");
     
     rockButton.addEventListener("click", (event) => {
-        const para = document.createElement("p");
-        para.textContent = `You picked Rock.`;
-        container.insertBefore(para, scores);
-        return "Rock";
+        return "rock";
     })
 
     paperButton.addEventListener("click", (event) => {
-        const para = document.createElement("p");
-        para.textContent = `You picked Paper.`;
-        container.insertBefore(para, scores);
-        return "Paper";
+        return "paper";
     })
 
     scissorButton.addEventListener("click", (event) => {
-        const para = document.createElement("p");
-        para.textContent = `You picked Scissors.`;
-        container.insertBefore(para, scores);
-        return "Scissors";
+        return "scissors";
     })
 }
 
 
-// // keep tally of the scores
-// let computerScore = 0;
-// let humanScore    = 0; 
+// used to create a paragraph element in case of tie
+function createParaIfTie (humanSelection) {
+    const para = document.createElement("p");
+    para.textContent = `You both picked ${humanSelection}. It's a tie.`;
+    container.insertBefore(para, scores);
+}
 
-// function playRound(getHumanChoice, getComputerChoice) {
 
-//     // hold the choices to use for later
-//     const humanSelection     = getHumanChoice;
-//     const computerSelection  = getComputerChoice;
+function checkIfWin(getHumanChoice, getComputerChoice) {
 
-//     // allows the user to see what was chosen as well as allow for debugging
-//     console.log(`You picked ${humanSelection}.`);
-//     console.log(`Computer picked ${computerSelection}`);
+    // hold the choices to use for later
+    const humanSelection     = getHumanChoice;
+    const computerSelection  = getComputerChoice;
 
-//     // If a tie
-//     if (humanSelection === computerSelection) {
-//         console.log(`You both picked ${humanSelection}. It's a tie.`);
+    // If a tie
+    if (humanSelection === computerSelection) {
+        return "tie";
 
-//     // If not a tieplayRound(getHumanChoice(), getComputerChoice());
+    } else if (humanSelection != computerSelection) { 
 
-//     } else if (humanSelection != computerSelection) { 
-
-//         // Player picks rock
-//         if (humanSelection === 'rock') {
+        // Player picks rock
+        if (humanSelection === 'rock') {
             
-//             if (computerSelection === "scissors") {     // Player wins
-//                 ++humanScore;
-//                 console.log("You win! Rock beats scissors.");
+            if (computerSelection === "scissors") {     // Player wins
+                return true;
 
-//             } else {                                    // Computer wins
-//                 ++computerScore;
-//                 console.log("You lose. Paper beats rock.");
-//             }
+            } else {                                    // Computer wins
+                return false;
+            }
 
-//         // Player picks paper
-//         } else if (humanSelection === 'paper') {
+        // Player picks paper
+        } else if (humanSelection === 'paper') {
 
-//             if (computerSelection === 'rock') {         // Player wins
-//                 ++humanScore;
-//                 console.log("You win! Paper beats rock.");
+            if (computerSelection === 'rock') {         // Player wins
+                return true;
 
-//             } else {                                    // Computer Wins
-//                 ++computerScore;
-//                 console.log("You lose. Scissors beat paper.");               
-//             }
+            } else {                                    // Computer Wins
+                return false;               
+            }
 
-//         // Player picks scissors
-//         } else if (humanSelection === 'scissors') {
+        // Player picks scissors
+        } else if (humanSelection === 'scissors') {
 
-//             if (computerSelection === 'paper') {         // Player wins
-//                 ++humanScore;
-//                 console.log("You win! Scissors beat paper.");
+            if (computerSelection === 'paper') {         // Player wins
+                return true;
 
-//             } else {                                    // Computer Wins
-//                 ++computerScore;
-//                 console.log("You lose. Rock beats scissors.");               
-//             }
-//         }
+            } else {                                    // Computer Wins
+                return false;              
+            }
+        }
+    }
+}
 
-//     // Present the socre to to the player at the end of the round. 
-//     console.log(`Score: You - ${humanScore} | Computer - ${computerScore}`);
 
-//     }
-// }
+// keep tally of the scores
+let computerScore = 0;
+let humanScore    = 0; 
+
+function playRound() {  // completely rewrite to incorporate checkIfWin()
+
+
+}
 
 
 // // Plays the game
@@ -141,4 +131,4 @@ function getHumanChoice() {
 // // Plays the actual game
 // playGame();
 
-getHumanChoice();
+playRound(getHumanChoice(), getComputerChoice());
