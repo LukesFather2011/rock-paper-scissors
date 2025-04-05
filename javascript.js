@@ -1,8 +1,9 @@
-/* This program runs the game Rock, Paper, Scissors in the console */
+// This program plays Rock, Paper, Scissors in a web browser.
 
 // used for placement of player & computer choices
 const container     = document.querySelector("#container");
-const scores        = document.querySelector("#scoreContainer");
+const humanTotal    = document.querySelector("#playerScore");
+const computerTotal = document.querySelector('#computerScore');
 
 
 function getComputerChoice() { 
@@ -23,7 +24,8 @@ function getComputerChoice() {
 }
 
 
-// Rework this function to work with buttons
+let humanChoice = "";  // Needed nice addEventListener returns null.
+
 function getHumanChoice() {
 
     const rockButton    = document.querySelector("#rockButton");
@@ -31,24 +33,16 @@ function getHumanChoice() {
     const scissorButton = document.querySelector("#scissorButton");
     
     rockButton.addEventListener("click", (event) => {
-        return "rock";
+        humanChoice = "rock";
     })
 
     paperButton.addEventListener("click", (event) => {
-        return "paper";
+        humanChoice = "paper";
     })
 
     scissorButton.addEventListener("click", (event) => {
-        return "scissors";
+        humanChoice = "scissors";
     })
-}
-
-
-// used to create a paragraph element in case of tie
-function createParaIfTie (humanSelection) {
-    const para = document.createElement("p");
-    para.textContent = `You both picked ${humanSelection}. It's a tie.`;
-    container.insertBefore(para, scores);
 }
 
 
@@ -102,8 +96,17 @@ function checkIfWin(getHumanChoice, getComputerChoice) {
 let computerScore = 0;
 let humanScore    = 0; 
 
-function playRound() {  // completely rewrite to incorporate checkIfWin()
+function playRound(checkIfWin) {  
 
+    if (checkIfWin === "tie") {
+        console.log("it's a tie!");
+
+    } else if (checkIfWin) {
+        console.log("You win");
+
+    } else {
+        console.log("You Lose");
+    }
 
 }
 
@@ -131,4 +134,3 @@ function playRound() {  // completely rewrite to incorporate checkIfWin()
 // // Plays the actual game
 // playGame();
 
-playRound(getHumanChoice(), getComputerChoice());
