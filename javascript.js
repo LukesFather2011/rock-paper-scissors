@@ -30,7 +30,30 @@ function getComputerChoice() {
         return "Scissors";
 
     }    
-
 }
 
+
+function getHumanChoice () {
+    
+    // identify the buttons in order to use event listeners on them
+    const rockButton    = document.querySelector("#rockButton");
+    const paperButton   = document.querySelector("#paperButton");
+    const scissorButton = document.querySelector("#scissorButton");
+
+    rockButton.addEventListener("click", () => {
+        alert("You clicked the Rock Button.");
+    })
+
+    paperButton.addEventListener("click", () => {
+        alert("You cliced the Paper Button.");
+    })
+
+    scissorButton.addEventListener("click", () => {
+        alert("You clicked the Scissor Button.");
+    })
+}
+
+// Prints the computers choice in the browser
 comSpan.textContent = getComputerChoice();
+
+getHumanChoice();
