@@ -1,13 +1,16 @@
 // Constants
+const container             = document.querySelector("#container");
 const buttons               = document.querySelectorAll("button");
 const playerScoreTracking   = document.querySelector("#playerScore");
 const computerScoreTracking = document.querySelector("#computerScore");
+const h2 = document.createElement("h2"); // for displaying the results of the winner.
 
+// Variables
 let playerScore     = 0;
 let computerScore   = 0;
 
 // Functions
-function getComputerChoice() {
+function getComputerChoice() {  // Easiest way to make it a fair choice. 
     let choice = Math.random();
 
     if (choice < 0.33 ) {
@@ -57,19 +60,32 @@ function compareChoice(playerChoice, comChoice) {
 }
 
 
-function playRound() {
-    buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-            let comChoice = getComputerChoice();
-            let playerChoice = button.id;
+function checkForWin() {
+    if (playerScore === 5) {
+        h2.textContent = "You win the game! Congratulations!  Refresh the page to play again.";
+        container.appendChild(h2);
 
-            alert("You picked " + playerChoice + "!");
-            alert("Computer picked " + comChoice + "!");
-            compareChoice(playerChoice, comChoice);
+    } else if (computerScore === 5) {
+        h2.textContent = "The Computer wins the game. :(  Refresh the page to play again.";
+        container.appendChild(h2);
+    }
+}
+
+
+function playGame() {
+
+    buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        let comChoice = getComputerChoice();
+        let playerChoice = button.id;
+
+        alert("You picked " + playerChoice + "!");
+        alert("Computer picked " + comChoice + "!");
+        compareChoice(playerChoice, comChoice);
+        checkForWin();
         })
     });
 }
 
-
-playRound(getComputerChoice());
+playGame();
 
